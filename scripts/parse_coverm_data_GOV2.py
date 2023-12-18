@@ -19,11 +19,6 @@ def parse_file(file, sample_type, sample_name):
 
 dataframes = []
 
-for f in glob.glob('data/Biller_COVERM_counts/*.txt.gz'):
-    print(f'parsing {f}')
-    sample_name = os.path.basename(f).split('_', 1)[0]
-    dataframes.append(parse_file(f,'Biller', sample_name))
-
 for f in glob.glob('data/GOV2_COVERM_counts/*.txt.gz'):
     print(f'parsing {f}')
     sample_name = os.path.basename(f).split('_', 1)[0]
@@ -41,4 +36,4 @@ gov2_metadata = pd.read_csv('data/sample-metadata.csv')
 
 final_df = complete_df.merge(mapping).merge(gov2_metadata)
 
-final_df.to_csv('data/merged_dataframe.tsv.gz', sep='\t', index=False)
+final_df.to_csv('data/GOV2_merged_dataframe.tsv.gz', sep='\t', index=False)
