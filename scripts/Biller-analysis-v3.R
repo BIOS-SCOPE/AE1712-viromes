@@ -82,7 +82,9 @@ contig_order = df %>% group_by(contig) %>%
 
 
 df = df %>% mutate(contig=factor(contig, levels=contig_order))
-df = df %>% mutate(depth=factor(depth,levels=c(1,10, 40, 60, 80, 100, 120, 160))) %>% filter(depth!='NA')
+df = df %>% mutate(depth=factor(depth,
+                                levels=c('AE1712 80m', 'AE1712 200m', 'Biller 1m','Biller 10m', 'Biller 40m', 'Biller 60m', 'Biller 80m', 'Biller 100m', 'Biller 120m', 'Biller 160m'))) %>%
+  filter(depth!='NA')
 
 
 

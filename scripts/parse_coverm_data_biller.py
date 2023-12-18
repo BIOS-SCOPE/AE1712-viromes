@@ -24,12 +24,19 @@ for f in glob.glob('data/Biller_COVERM_counts/*.txt.gz'):
     sample_name = os.path.basename(f).split('_', 1)[0]
     dataframes.append(parse_file(f,'Biller', sample_name))
 
+for f in glob.glob('data/orig_bats_data/cellular/*.txt.gz'):
+    print(f'parsing {f}')
+    sample_name = os.path.basename(f).split('_C', 1)[0]
+    dataframes.append(parse_file(f, 'AE1712', sample_name))
+complete_df = pd.concat(dataframes)
+
 
 complete_df = pd.concat(dataframes)
 
 mapping = pd.read_csv('data/phage_mapping.txt', sep='\t')
 
 biller_metadata = pd.read_csv('data/Biller-metadata.tsv', sep='\t')
+
 
 final_df = complete_df.merge(mapping).merge(biller_metadata)
 
